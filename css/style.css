@@ -1,7 +1,63 @@
+body {
+    background-color: #F9F7FE;
+    font-family: sans-serif;
+}
+
+.container {
+    background: white;
+    border-radius: 10px;
+    box-shadow: -2px 0px 16px -2px rgba(187,118,255,0.2);
+    margin: 30px auto;
+    margin-bottom: 15px;
+    max-width: 600px;
+    padding: 30px;
+}
+
 h1 {
-    color: blue;
+    color: #885DF1;
+    font-size: 42px;
+    text-align: center;
+}
+
+select {
+    border-radius: 4px;
+    display: block;
+    font-size: 18px;
+    padding: 8px;
+    width: 100%;
+}
+
+.city {
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
+    display : flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    padding: 30px 0;
+}
+.city:last-child {
+    border: none;
+}
+
+h2 {
+    margin: 0 0 5px;
+    font-size: 28px;
+}
+
+.date {
+    opacity: 0.7;
+}
+
+.time {
+    font-size: 48px;
+    font-weight: bold;
+}
+.time small {
+    font-size: 24px;
+    vertical-align: middle;
 }
 
 footer {
     text-align: center;
+    font-size: 17px;
+    color: rgba(0, 0, 0, 0.7);
 }
