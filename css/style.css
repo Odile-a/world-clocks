@@ -1,21 +1,24 @@
 body {
-    background-color: #F9F7FE;
-    font-family: sans-serif;
+    background: linear-gradient(to top, #dad4ec 0%, #dad4ec 1%, #f3e7e9 100%);
+   /* background-color: #F9F7FE; */
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .container {
     background: white;
     border-radius: 10px;
     box-shadow: -2px 0px 16px -2px rgba(187,118,255,0.2);
-    margin: 30px auto;
+    margin: 60px auto;
     margin-bottom: 15px;
     max-width: 600px;
     padding: 30px;
 }
 
 h1 {
-    color: #885DF1;
-    font-size: 42px;
+    color: #551A8B;
+    font-size: 47px;
     text-align: center;
 }
 
