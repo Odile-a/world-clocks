@@ -13,12 +13,14 @@ body {
     margin: 60px auto;
     margin-bottom: 15px;
     max-width: 600px;
-    padding: 30px;
+    padding: 30px 40px;
 }
 
 h1 {
     color: #551A8B;
+    font-family: 'Monoton', cursive;;
     font-size: 47px;
+    margin-top: 15px;
     text-align: center;
 }
 

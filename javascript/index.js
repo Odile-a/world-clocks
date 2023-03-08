@@ -17,3 +17,24 @@ sanDiegoTimeElement.innerHTML = sanDiegoTime.format("h:mm:ss [<small>]A[</small>
 }
 updateTime();
 setInterval(updateTime, 1000);
+
+
+function updateCity(event) {
+    let cityTimeZone = event.target.value;
+    let CityName = cityTimeZone.repace("_", " ").split(/)[1];
+    let cityTime = moment().tz(cityTimeZone);
+    let citiesElement = document.querySelector("#cities");
+    citiesElement.innerHTML = `
+    <div class="city">
+        <div>
+            <h2>${cityTimeZone}</h2>
+            <div class="date">${cityTime.format("ddd Do MMM YYYY")}</div>
+        </div>
+        <div class="time">${cityTime.format("h:mm:ss")} <small>${cityTime.format("A")}</small></div>
+    </div>
+    `;
+}
+
+
+let citiesSelectElement = document.querySelector("#city");
+citiesSelectElement.addEventListener("change", updateCity);
