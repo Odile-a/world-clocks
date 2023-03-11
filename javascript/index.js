@@ -1,5 +1,5 @@
 
-document.addEventListener("DOMContentLoaded", function() {
+//time
 function updateTime(){
 //Tokyo
 let tokyoElement = document.querySelector("#tokyo");
@@ -25,7 +25,6 @@ let ReykjavikTime = moment().tz("Atlantic/Reykjavik");
 ReykjavikDateElement.innerHTML = ReykjavikTime.format("ddd Do MMM YYYY");
 ReykjavikTimeElement.innerHTML = ReykjavikTime.format("h:mm:ss [<small>]A[</small>]");
 
-
 //Bali
 let baliElement = document.querySelector("#bali");
 let baliDateElement = baliElement.querySelector(".date");
@@ -33,20 +32,14 @@ let baliTimeElement = baliElement.querySelector(".time")
 let baliTime = moment().tz("Asia/Jakarta");
 baliDateElement.innerHTML = baliTime.format("ddd Do MMM YYYY");
 baliTimeElement.innerHTML = baliTime.format("h:mm:ss [<small>]A[</small>]");
-}
-
-
-updateTime();
-setInterval(updateTime, 1000);
 
 let citySelectElement = document.querySelectorAll(".city");
         for (let city = 0; city<citySelectElement.length; city++) {
          citySelectElement[city].addEventListener("click", removeCity);
         }
+}
 
-
-
-
+let cityInterval = null;
 function updateCity(event) {
     let cityElement = document.querySelectorAll(".city");
     if (cityElement.length<4){
@@ -55,6 +48,7 @@ function updateCity(event) {
         cityTimeZone = moment.tz.guess();
         }
     let cityName = cityTimeZone.replace("_", " ").split("/")[1];
+
     let cityTime = moment().tz(cityTimeZone);
     let citiesElement = document.querySelector("#cities");
     citiesElement.innerHTML += `
@@ -66,23 +60,28 @@ function updateCity(event) {
         <div class="time">${cityTime.format("h:mm:ss")} <small>${cityTime.format("A")}</small></div>
     </div>
     `;
-    let citySelectElement = document.querySelectorAll(".city");
-        for (let city = 0; city<citySelectElement.length; city++) {
-         citySelectElement[city].addEventListener("click", removeCity);
-        }
+//    let citySelectElement = document.querySelectorAll(".city");
+//        for (let city = 0; city<citySelectElement.length; city++) {
+//         citySelectElement[city].addEventListener("click", removeCity);
+//        }
+        let unselectCityElement = document.querySelectorAll(".city");
+        unselectCityElement.forEach(city => {
+            city.addEventListener(`click`, removeCity)
+        })
     } 
 }
 
-
 let citiesSelectElement = document.querySelector("#city");
 citiesSelectElement.addEventListener("change", updateCity);
+
 
 function removeCity (){
     this.remove();
 }
 
-});
+updateTime();
+setInterval(updateTime, 1000);
 
-
-
+updateCity();
+setInterval(updateCity, 1000);
 
