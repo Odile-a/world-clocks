@@ -1,27 +1,54 @@
-//function updateTime(){
-// London
-// let londonElement = document.querySelector("#london");
-// let londonDateElement = londonElement.querySelector(".date");
-// let londonTimeElement = londonElement.querySelector(".time")
-// let londonTime = moment().tz("Europe/London");
-// londonDateElement.innerHTML = londonTime.format("ddd Do MMM YYYY");
-// londonTimeElement.innerHTML = londonTime.format("h:mm:ss [<small>]A[</small>]");
 
-// //San Diego
-// let sanDiegoElement = document.querySelector("#sanDiego");
-// let sanDiegoDateElement = sanDiegoElement.querySelector(".date");
-// let sanDiegoTimeElement = sanDiegoElement.querySelector(".time")
-// let sanDiegoTime = moment().tz("America/Vancouver");
-// sanDiegoDateElement.innerHTML = sanDiegoTime.format("ddd Do MMM YYYY");
-// sanDiegoTimeElement.innerHTML = sanDiegoTime.format("h:mm:ss [<small>]A[</small>]");
-// }
-//updateTime();
-//setInterval(updateTime, 1000);
+document.addEventListener("DOMContentLoaded", function() {
+function updateTime(){
+//Tokyo
+let tokyoElement = document.querySelector("#tokyo");
+let tokyoDateElement = tokyoElement.querySelector(".date");
+let tokyoTimeElement = tokyoElement.querySelector(".time")
+let tokyoTime = moment().tz("Asia/Tokyo");
+tokyoDateElement.innerHTML = tokyoTime.format("ddd Do MMM YYYY");
+tokyoTimeElement.innerHTML = tokyoTime.format("h:mm:ss [<small>]A[</small>]");
+
+//San Diego
+let sanDiegoElement = document.querySelector("#san-diego");
+let sanDiegoDateElement = sanDiegoElement.querySelector(".date");
+let sanDiegoTimeElement = sanDiegoElement.querySelector(".time")
+let sanDiegoTime = moment().tz("America/Vancouver");
+sanDiegoDateElement.innerHTML = sanDiegoTime.format("ddd Do MMM YYYY");
+sanDiegoTimeElement.innerHTML = sanDiegoTime.format("h:mm:ss [<small>]A[</small>]");
+
+//Reykjavik/Island
+let ReykjavikElement = document.querySelector("#Reykjavik");
+let ReykjavikDateElement = ReykjavikElement.querySelector(".date");
+let ReykjavikTimeElement = ReykjavikElement.querySelector(".time")
+let ReykjavikTime = moment().tz("Atlantic/Reykjavik");
+ReykjavikDateElement.innerHTML = ReykjavikTime.format("ddd Do MMM YYYY");
+ReykjavikTimeElement.innerHTML = ReykjavikTime.format("h:mm:ss [<small>]A[</small>]");
+
+
+//Bali
+let baliElement = document.querySelector("#bali");
+let baliDateElement = baliElement.querySelector(".date");
+let baliTimeElement = baliElement.querySelector(".time")
+let baliTime = moment().tz("Asia/Jakarta");
+baliDateElement.innerHTML = baliTime.format("ddd Do MMM YYYY");
+baliTimeElement.innerHTML = baliTime.format("h:mm:ss [<small>]A[</small>]");
+}
+
+
+updateTime();
+setInterval(updateTime, 1000);
+
+let citySelectElement = document.querySelectorAll(".city");
+        for (let city = 0; city<citySelectElement.length; city++) {
+         citySelectElement[city].addEventListener("click", removeCity);
+        }
+
+
 
 
 function updateCity(event) {
     let cityElement = document.querySelectorAll(".city");
-    console.log(cityElement.length);
     if (cityElement.length<4){
     let cityTimeZone = event.target.value;
         if (cityTimeZone === "current") {
@@ -39,13 +66,11 @@ function updateCity(event) {
         <div class="time">${cityTime.format("h:mm:ss")} <small>${cityTime.format("A")}</small></div>
     </div>
     `;
-let citySelectElement = document.querySelectorAll(".city");
- for (let city = 0; city<citySelectElement.length; city++) {
-    citySelectElement[city].addEventListener("click", removeCity);
- }
-    }
-
-    
+    let citySelectElement = document.querySelectorAll(".city");
+        for (let city = 0; city<citySelectElement.length; city++) {
+         citySelectElement[city].addEventListener("click", removeCity);
+        }
+    } 
 }
 
 
@@ -56,7 +81,7 @@ function removeCity (){
     this.remove();
 }
 
-
+});
 
 
 
