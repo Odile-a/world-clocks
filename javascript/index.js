@@ -17,14 +17,6 @@ let sanDiegoTime = moment().tz("America/Vancouver");
 sanDiegoDateElement.innerHTML = sanDiegoTime.format("ddd Do MMM YYYY");
 sanDiegoTimeElement.innerHTML = sanDiegoTime.format("h:mm:ss [<small>]A[</small>]");
 
-//Reykjavik/Island
-let ReykjavikElement = document.querySelector("#Reykjavik");
-let ReykjavikDateElement = ReykjavikElement.querySelector(".date");
-let ReykjavikTimeElement = ReykjavikElement.querySelector(".time")
-let ReykjavikTime = moment().tz("Atlantic/Reykjavik");
-ReykjavikDateElement.innerHTML = ReykjavikTime.format("ddd Do MMM YYYY");
-ReykjavikTimeElement.innerHTML = ReykjavikTime.format("h:mm:ss [<small>]A[</small>]");
-
 //Bali
 let baliElement = document.querySelector("#bali");
 let baliDateElement = baliElement.querySelector(".date");
@@ -33,37 +25,37 @@ let baliTime = moment().tz("Asia/Jakarta");
 baliDateElement.innerHTML = baliTime.format("ddd Do MMM YYYY");
 baliTimeElement.innerHTML = baliTime.format("h:mm:ss [<small>]A[</small>]");
 
+//option to remove a city by selection
 let citySelectElement = document.querySelectorAll(".city");
         for (let city = 0; city<citySelectElement.length; city++) {
          citySelectElement[city].addEventListener("click", removeCity);
         }
 }
 
-let cityInterval = null;
+//add a Div for a new city 
 function updateCity(event) {
     let cityElement = document.querySelectorAll(".city");
     if (cityElement.length<4){
-    let cityTimeZone = event.target.value;
-        if (cityTimeZone === "current") {
-        cityTimeZone = moment.tz.guess();
-        }
-    let cityName = cityTimeZone.replace("_", " ").split("/")[1];
-
-    let cityTime = moment().tz(cityTimeZone);
-    let citiesElement = document.querySelector("#cities");
-    citiesElement.innerHTML += `
-    <div class="city">
-        <div>
-            <h2>${cityName}</h2>
-            <div class="date">${cityTime.format("ddd Do MMM YYYY")}</div>
+        let cityTimeZone = event.target.value;
+            if (cityTimeZone === "current") {
+            cityTimeZone = moment.tz.guess();
+            }
+        let cityName = cityTimeZone.replace("_", " ").split("/")[1];
+        let cityId = cityName.replaceAll(" ","_");
+        let citiesElement = document.querySelector("#cities");
+        citiesElement.innerHTML += `
+        <div class="city" id="${cityId}">
+            <div>
+                <h2>${cityName}</h2>
+                <div class="date"></div>
+            </div>
+            <div class="time"></div>
         </div>
-        <div class="time">${cityTime.format("h:mm:ss")} <small>${cityTime.format("A")}</small></div>
-    </div>
-    `;
-//    let citySelectElement = document.querySelectorAll(".city");
-//        for (let city = 0; city<citySelectElement.length; city++) {
-//         citySelectElement[city].addEventListener("click", removeCity);
-//        }
+        `;
+//set an interval on the div only => function updateTimeBasic
+        updateTimeBasic(cityTimeZone, cityId);
+        setInterval(updateTimeBasic, 1000, cityTimeZone, cityId);
+//option to remove a city by selection
         let unselectCityElement = document.querySelectorAll(".city");
         unselectCityElement.forEach(city => {
             city.addEventListener(`click`, removeCity)
@@ -71,17 +63,28 @@ function updateCity(event) {
     } 
 }
 
+//isolate the elements to update
+function updateTimeBasic (cityTimeZone, cityId) {
+    //alert(cityId + cityTimeZone);
+    let cityElement = document.querySelector("#"+cityId);
+    let dateElement = cityElement.querySelector(".date");
+    let timeElement = cityElement.querySelector(".time");
+    let cityTime = moment().tz(cityTimeZone);
+    dateElement.innerHTML = cityTime.format("ddd Do MMM YYYY");
+    timeElement.innerHTML = cityTime.format("h:mm:ss [<small>]A[</small>]");
+}
+
+//EventListener selection location
 let citiesSelectElement = document.querySelector("#city");
 citiesSelectElement.addEventListener("change", updateCity);
 
-
+//remove
 function removeCity (){
     this.remove();
 }
 
+//setInterval on the main page
 updateTime();
 setInterval(updateTime, 1000);
 
-updateCity();
-setInterval(updateCity, 1000);
 
