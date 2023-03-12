@@ -1,9 +1,12 @@
 body {
     background: linear-gradient(to top, #dad4ec 0%, #dad4ec 1%, #f3e7e9 100%);
-   /* background-color: #F9F7FE; */
     background-attachment: fixed;
     background-repeat: no-repeat;
     font-family: 'Montserrat', sans-serif;
+}
+
+a:link {
+  color: #551A8B;
 }
 
 .container {
@@ -51,7 +54,7 @@ select {
 }
 .city:hover{
     background: #dad4ec;
-    cursor: not-allowed;
+    cursor: url(https://s3.amazonaws.com/shecodesio-production/uploads/files/000/071/326/original/icons8-delete-key-60.png?1678664032), auto;
 }
 .city:first-child{
     margin-top: 10px;
